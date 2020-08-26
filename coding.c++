@@ -1,41 +1,37 @@
 #include <iostream>
-#include <string>
-#include <algorithm>
 #include <vector>
+#include <algorithm>
+
 using namespace std;
 
-bool compare(pair<int ,int> a, pair<int ,int> b){
-    if(a.second == b.second){
-        return a.first < b.first;
-    }
-    else return a.second < b.second;
-}
-
 int main(void){
-    cin.tie(nullptr);
+    vector<int> v;
     int n;
     scanf("%d", &n);
-
-    vector<pair<int,int>> v;
-
+    
     for(int i = 0 ; i < n ; i++){
-        int tmp1, tmp2;
-        scanf("%d %d", &tmp1, &tmp2);
+        long long temp;
+        scanf("%d", &temp);
 
-        v.push_back({tmp1, tmp2});
+        v.push_back(temp);
     }
-    sort(v.begin(), v.end(),compare);
 
-    int cnt = 1 , end = v[0].second;
+    sort(v.begin(), v.end());
 
-    for(int i = 1 ; i < n ; i++){
-        if(end <= v[i].first){
-            cnt++;
-            end = v[i].second;
+    long long max = v[n-1];
+
+    for(long long i = 2 ; i < max ; i++){
+        bool check = true;
+        long long namuji = v[0]%i;
+        for(int j = 0 ; j < n; j++){
+            if(v[j]%i != namuji){
+                check = false;
+                break;
+            }
+        }
+        if(check == true){
+            printf("%lld ", i);
         }
     }
-
-    printf("%d\n", cnt);
-
     return 0;
 }

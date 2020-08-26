@@ -2,34 +2,32 @@
 #include <string>
 #include <vector>
 #include <queue>
+#include <algorithm>
 
 using namespace std;
 
 int main(void){
-   int t;
-   scanf("%d", &t);
+   int n, k;
+   int answer = 0;
+   scanf("%d %d", &n, &k);
+   vector<int> coin;
 
-   for(int i = 0 ; i < t ; i++){
-      int m, n, k;
-      scanf("%d %d %d", &m, &n, &k);
+   for(int i = 0 ; i < n ; i++){
+      int temp;
+      scanf("%d", &temp);
 
-      int **field = new int*[m];
-      for(int j = 0 ; j < m ; j++){
-         field[j] = new int[n];
-      }
+      coin.push_back(temp);
+   }
 
-      for(int j = 0 ; j < m ; j++){
-         for(int d = 0 ; d < n ; d++){
-            field[j][d] = 0;
-         }
-         printf("\n");
-      }
+   sort(coin.begin(),coin.end());
 
-      for(int j = 0 ; j < m ; j++){
-         for(int d = 0 ; d < n ; d++){
-            printf("%d ", field[j][d]);
-         }
-         printf("\n");
+   for(int i = n-1 ; 0 <= i ; i--){
+      printf("%d\n", k);
+      if(coin[i] <= k){
+         answer += k/coin[i];
+         k %= coin[i];
       }
    }
-}
+
+   printf("%d", answer);
+} 
