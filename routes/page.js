@@ -24,4 +24,6 @@ router.get('/', (req, res, next) => {
         title: 'NodeBird',
         twits,
     });
-}) ;
+});
+
+module.exports = router;
