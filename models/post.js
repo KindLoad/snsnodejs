@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-module.exports = class Post extends Sequuelize.Model {
+module.exports = class Post extends Sequelize.Model {
     static init(sequelize) {
         return super.init({
             content: {
@@ -8,7 +8,7 @@ module.exports = class Post extends Sequuelize.Model {
                 allowNull: false,
             },
             img: {
-                typ: Sequelize.STRING(200),
+                type: Sequelize.STRING(200),
                 allowNull: true,
             },
         }, {
@@ -24,7 +24,7 @@ module.exports = class Post extends Sequuelize.Model {
     }
 
     static associate(db) {
-        db.Post.belongTo(db.User);
+        db.Post.belongsTo(db.User);
         db.Post.belongsToMany(db.Hashtag, { through: 'PostHashtag'}); // through를 통해 관계 테이블을 만들어냄
     }
 };
